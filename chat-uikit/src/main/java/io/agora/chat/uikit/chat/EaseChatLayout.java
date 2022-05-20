@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -748,6 +749,8 @@ public class EaseChatLayout extends RelativeLayout implements IChatLayout, IHand
     public void onTouchItemOutside(View v, int position) {
         inputMenu.hideSoftKeyboard();
         inputMenu.showExtendMenu(false);
+        if (listener != null)
+        listener.onTouchItemOutside();
     }
 
     @Override
@@ -759,6 +762,8 @@ public class EaseChatLayout extends RelativeLayout implements IChatLayout, IHand
         inputMenu.setBackgroundResource(R.drawable.ease_chat_input_bg);
         inputMenu.hideSoftKeyboard();
         inputMenu.showExtendMenu(false);
+        if (listener != null)
+        listener.onViewDragging();
     }
 
     @Override
@@ -1035,6 +1040,11 @@ public class EaseChatLayout extends RelativeLayout implements IChatLayout, IHand
         public void onMemberExited(String roomId, String roomName, String participant) {
 
         }
+    }
+
+
+    public void sendEmojiMessage(ChatMessage emoji) {
+        presenter.sendEmojiMessage(emoji);
     }
 
     /**

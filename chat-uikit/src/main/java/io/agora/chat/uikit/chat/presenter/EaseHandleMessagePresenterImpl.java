@@ -220,6 +220,11 @@ public class EaseHandleMessagePresenterImpl extends EaseHandleMessagePresenter {
         }
     }
 
+    @Override
+    public void sendEmojiMessage(ChatMessage emoji) {
+        sendMessage(emoji);
+    }
+
     private String getThumbPath(Uri videoUri) {
         if(!EaseFileUtils.isFileExistByUri(mView.context(), videoUri)) {
             return "";

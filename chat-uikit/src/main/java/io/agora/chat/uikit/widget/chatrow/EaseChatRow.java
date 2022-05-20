@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import java.util.Date;
 import io.agora.CallBack;
 import io.agora.chat.ChatClient;
 import io.agora.chat.ChatMessage;
+import io.agora.chat.ImageMessageBody;
 import io.agora.chat.uikit.EaseUIKit;
 import io.agora.chat.uikit.R;
 import io.agora.chat.uikit.adapter.EaseBaseAdapter;
@@ -29,6 +32,7 @@ import io.agora.chat.uikit.chat.model.EaseChatSetStyle;
 import io.agora.chat.uikit.interfaces.MessageListItemClickListener;
 import io.agora.chat.uikit.options.EaseAvatarOptions;
 import io.agora.chat.uikit.utils.EaseDateUtils;
+import io.agora.chat.uikit.utils.EaseFileUtils;
 import io.agora.chat.uikit.utils.EaseUserUtils;
 import io.agora.chat.uikit.widget.EaseImageView;
 import io.agora.util.EMLog;
@@ -562,6 +566,10 @@ public abstract class EaseChatRow extends LinearLayout {
                 public void run() {
                     onMessageError();
                     if(itemClickListener != null) {
+                        if (message.getBody() instanceof ImageMessageBody){
+                            boolean isFileExit =  EaseFileUtils.isFileExistByUri(context,((ImageMessageBody) message.getBody()).getLocalUri());
+                            if (code == 403 && !isFileExit) return;
+                        }
                         itemClickListener.onMessageError(message, code, error);
                     }
                 }

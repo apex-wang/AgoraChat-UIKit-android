@@ -156,5 +156,11 @@ public abstract class EaseHandleMessagePresenter extends EaseBasePresenter {
     public boolean isGroupChat() {
         return chatType == EaseConstant.CHATTYPE_GROUP;
     }
+
+    /**
+     * Send emoji message
+     * @param emoji
+     */
+    public abstract void sendEmojiMessage(ChatMessage emoji);
 }
 

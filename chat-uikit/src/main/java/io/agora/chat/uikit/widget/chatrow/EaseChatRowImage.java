@@ -11,6 +11,7 @@ import io.agora.chat.ChatClient;
 import io.agora.chat.ChatMessage;
 import io.agora.chat.ImageMessageBody;
 import io.agora.chat.uikit.R;
+import io.agora.chat.uikit.utils.EaseFileUtils;
 import io.agora.chat.uikit.utils.EaseImageUtils;
 
 
@@ -20,6 +21,7 @@ import io.agora.chat.uikit.utils.EaseImageUtils;
 public class EaseChatRowImage extends EaseChatRowFile {
     protected ImageView imageView;
     private ImageMessageBody imgBody;
+    private boolean isFileExit = true;
 
     public EaseChatRowImage(Context context, boolean isSender) {
         super(context, isSender);
@@ -48,8 +50,13 @@ public class EaseChatRowImage extends EaseChatRowFile {
             bubbleLayout.setBackground(null);
         }
         imgBody = (ImageMessageBody) message.getBody();
+
+        if (message.getBody() instanceof ImageMessageBody){
+            isFileExit =  EaseFileUtils.isFileExistByUri(context,((ImageMessageBody) message.getBody()).getLocalUri());
+        }
+
         // received messages
-        if (message.direct() == ChatMessage.Direct.RECEIVE) {
+        if (message.direct() == ChatMessage.Direct.RECEIVE && isFileExit ) {
             ViewGroup.LayoutParams params = EaseImageUtils.getImageShowSize(context, message);
             ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
             layoutParams.width = params.width;

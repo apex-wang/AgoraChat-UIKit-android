@@ -31,4 +31,14 @@ public interface OnMessageItemClickListener {
      * @param username
      */
     void onUserAvatarLongClick(String username);
+
+    /**
+     * touch event
+     */
+    void onTouchItemOutside();
+
+    /**
+     * slide event
+     */
+    void onViewDragging();
 }
