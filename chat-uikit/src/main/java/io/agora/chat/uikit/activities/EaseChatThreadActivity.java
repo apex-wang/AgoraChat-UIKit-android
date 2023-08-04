@@ -3,6 +3,8 @@ package io.agora.chat.uikit.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -98,6 +100,16 @@ public class EaseChatThreadActivity extends EaseBaseActivity {
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
                             EMLog.e("TAG", "onTextChanged: s: " + s.toString());
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+
+                        @Override
+                        public boolean editTextOnKeyListener(View v, int keyCode, KeyEvent event) {
+                            return false;
                         }
                     })
                     .hideSenderAvatar(true);

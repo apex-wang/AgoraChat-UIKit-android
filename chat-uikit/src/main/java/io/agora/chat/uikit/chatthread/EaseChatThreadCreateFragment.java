@@ -7,8 +7,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -227,6 +229,16 @@ public class EaseChatThreadCreateFragment extends EaseBaseFragment implements Ch
     @Override
     public void onTyping(CharSequence s, int start, int before, int count) {
 
+    }
+
+    @Override
+    public void onAfterTypingChanged(Editable editable) {
+
+    }
+
+    @Override
+    public boolean editTextOnKeyListener(View v, int keyCode, KeyEvent event) {
+        return false;
     }
 
     @Override

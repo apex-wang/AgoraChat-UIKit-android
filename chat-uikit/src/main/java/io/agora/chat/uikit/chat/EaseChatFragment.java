@@ -6,8 +6,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -406,6 +408,21 @@ public class EaseChatFragment extends EaseBaseFragment implements OnChatLayoutLi
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if(chatInputChangeListener != null) {
             chatInputChangeListener.onTextChanged(s, start, before, count);
+        }
+    }
+
+    @Override
+    public boolean editTextOnKeyListener(View v, int keyCode, KeyEvent event) {
+        if(chatInputChangeListener != null) {
+            return chatInputChangeListener.editTextOnKeyListener(v, keyCode, event);
+        }
+        return false;
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        if(chatInputChangeListener != null) {
+            chatInputChangeListener.afterTextChanged(editable);
         }
     }
 

@@ -9,8 +9,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -539,6 +541,21 @@ public class EaseChatLayout extends RelativeLayout implements IChatLayout, IHand
                 typingHandler.sendEmptyMessageDelayed(MSG_TYPING_END, TYPING_SHOW_TIME);
             }
         }
+    }
+
+    @Override
+    public void onAfterTypingChanged(Editable editable) {
+        if(listener != null) {
+            listener.afterTextChanged(editable);
+        }
+    }
+
+    @Override
+    public boolean editTextOnKeyListener(View v, int keyCode, KeyEvent event) {
+        if(listener != null) {
+            return listener.editTextOnKeyListener(v, keyCode, event);
+        }
+        return false;
     }
 
     @Override

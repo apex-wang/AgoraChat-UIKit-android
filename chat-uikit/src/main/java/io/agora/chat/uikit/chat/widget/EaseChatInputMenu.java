@@ -3,9 +3,10 @@ package io.agora.chat.uikit.chat.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -245,6 +246,21 @@ public class EaseChatInputMenu extends LinearLayout implements IChatInputMenu, E
         if(menuListener != null) {
             menuListener.onTyping(s, start, before, count);
         }
+    }
+
+    @Override
+    public void onAfterTypingChanged(Editable editable) {
+        if(menuListener != null) {
+            menuListener.onAfterTypingChanged(editable);
+        }
+    }
+
+    @Override
+    public boolean editTextOnKeyListener(View v, int keyCode, KeyEvent event) {
+        if(menuListener != null) {
+            return menuListener.editTextOnKeyListener(v, keyCode, event);
+        }
+        return false;
     }
 
     @Override

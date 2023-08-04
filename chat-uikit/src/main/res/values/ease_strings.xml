@@ -11,7 +11,7 @@
     <string name="ease_dynamic_expression">[Animoji]</string>
 
     <string name="ease_list_no_data_text">No data</string>
-    <string name="ease_all_members">All members</string>
+    <string name="ease_all_members">ALL</string>
 
     <string name="ease_action_reply">Reply</string>
     <string name="ease_action_copy">Copy</string>
@@ -29,7 +29,7 @@
     <string name="ease_list_no_conversation_data_text">No data</string>
     <string name="ease_conversation_default_title">Chats</string>
 
-    <string name="ease_chat_were_mentioned">[@Mentioning me]</string>
+    <string name="ease_chat_were_mentioned">[Someone@You]</string>
     <string name="ease_chat_were_not_send_msg">[Draft]</string>
 
     <string name="ease_msg_recall_by_self">You unsent a message</string>

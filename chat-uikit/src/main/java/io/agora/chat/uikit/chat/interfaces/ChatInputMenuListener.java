@@ -1,5 +1,7 @@
 package io.agora.chat.uikit.chat.interfaces;
 
+import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -8,6 +10,16 @@ public interface ChatInputMenuListener {
      * when typing on the edit-text layout.
      */
     void onTyping(CharSequence s, int start, int before, int count);
+
+    /**
+     * after typing Text changed
+     */
+    void onAfterTypingChanged(Editable editable);
+
+    /**
+     * edit text OnKeyListener
+     */
+    boolean editTextOnKeyListener(View v, int keyCode, KeyEvent event);
 
     /**
      * when send message button pressed

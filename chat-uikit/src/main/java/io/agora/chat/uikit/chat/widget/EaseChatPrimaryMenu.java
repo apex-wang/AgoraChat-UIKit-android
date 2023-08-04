@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -106,6 +105,17 @@ public class EaseChatPrimaryMenu extends RelativeLayout implements IChatPrimaryM
                 return false;
             }
         });
+
+        editText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (listener != null){
+                   return listener.editTextOnKeyListener(v, keyCode, event);
+                }
+                return false;
+            }
+        });
+
     }
 
     private void checkSendButton() {
@@ -394,6 +404,9 @@ public class EaseChatPrimaryMenu extends RelativeLayout implements IChatPrimaryM
     @Override
     public void afterTextChanged(Editable s) {
         EMLog.i("TAG", this.getClass().getSimpleName() + " afterTextChanged s:"+s);
+        if (listener != null){
+            listener.onAfterTypingChanged(s);
+        }
     }
 }
 
