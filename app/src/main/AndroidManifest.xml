@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.agora.chat.uikit.simple">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- IM SDK required start -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -26,9 +25,11 @@
         android:name=".DemoApplication"
         android:theme="@style/Theme.AgoraChatUIKit">
         <activity android:name=".MainActivity"
-            android:label="ConversationList"/>
+            android:exported="false"
+            android:label="ConversationList" />
 
-        <activity android:name=".SignInActivity" >
+        <activity android:name=".SignInActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,6 +38,7 @@
         </activity>
         <activity android:name=".ChatActivity"
             android:label="Chat"
+            android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
         <!--Add FileProvider-->
